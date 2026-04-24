@@ -1,0 +1,37 @@
+{
+  "template_name": "M2M Priority Arbitration (MPA)",
+  "description": "A deterministic arbitration system for resolving priority conflicts between machine tasks.",
+  "inputs": {
+    "task_queue": {
+      "type": "list",
+      "description": "List of pending tasks with metadata."
+    },
+    "agent_load": {
+      "type": "integer",
+      "description": "Current load or capacity of the agent."
+    },
+    "priority_rules": {
+      "type": "list",
+      "description": "Rules defining how priority is calculated."
+    }
+  },
+  "workflow": [
+    {
+      "step": "evaluate_tasks",
+      "action": "Agent evaluates all tasks based on metadata and priority rules."
+    },
+    {
+      "step": "score",
+      "action": "Each task receives a deterministic priority score."
+    },
+    {
+      "step": "select",
+      "action": "Highest scoring task is selected for execution."
+    },
+    {
+      "step": "output",
+      "action": "Protocol returns the selected task and arbitration reasoning."
+    }
+  ],
+  "output_format": "json"
+}
